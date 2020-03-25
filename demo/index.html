@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="https://d3js.org/d3.v5.min.js"></script>
+</head>
+<style type="text/css">
+
+	body, html {
+		font-family:'Helvetica Neue', sans-serif;
+	}
+
+	.card {
+		background-color:#f2f2f2;
+		width:40%;
+		height:20vh;
+		text-align:center;
+		margin:2%;
+		display:inline-flex;
+		justify-content:center;
+		align-items:center;
+		vertical-align:top;
+		padding:10% 0%;
+	}
+	.aligner {
+		max-width:auto;
+		text-align:center;
+	}
+	.card img {
+		width: 200%;
+		margin-top:-5%;
+		margin-left:-40%;
+	}
+	.mask {
+		margin-left:15%;
+		width:5em;
+		height:5em;
+		border-radius:50%;
+		overflow:hidden;
+	}
+	.card h1 {
+		font-size:1em;
+	}
+	.suv {
+		background-color:#1d1d1d;
+		color:white;
+
+	}
+	.sedan {
+		background-color:#cccccc;
+
+	}
+	.mini {
+
+	}
+
+</style>
+<body>
+
+
+<div id='main'></div>
+
+</body>
+<script type="text/javascript">
+	
+d3.csv('https://raw.githubusercontent.com/3milychu/demo/master/data.csv')
+	.then(
+		function(data){
+			console.log(data)
+			viewData(data,'main')
+		}
+		)
+	.catch(function(error){
+		// catch error
+	})
+
+// declare a function
+function viewData (data, location_id) {
+	// select the element that I will write the data in
+	el = document.querySelector('#'+location_id)  
+
+	// iterate over each item and do something with its attributes
+	data.forEach(function(item){
+			div = document.createElement('div')
+			div.setAttribute('class','card')
+			div.classList.add(item['type'])
+			aligner = document.createElement('div')
+			aligner.setAttribute('class','aligner')
+			h1 = document.createElement('h1')
+			h1.innerHTML=item['name']
+			mask = document.createElement('div')
+			mask.setAttribute('class', 'mask')
+			img = document.createElement('img') 
+			img.src=item['cover_img']
+			mask.appendChild(img)
+			aligner.appendChild(mask)
+			aligner.appendChild(h1)
+			div.appendChild(aligner)
+			el.appendChild(div)
+	})
+}
+
+
+</script>
+</html>
