@@ -93,7 +93,7 @@ input {
   align-content: center;
   padding-left:80px;
   padding-bottom:80px;
-  display: inline-block;
+  display: block;
   margin-left: auto;
   margin-right: auto;
   max-width: 270px;
@@ -150,4 +150,37 @@ figcaption {
 #i9:hover {
   transform: scale(1.6);
 }
+#GSRM20_Mikro_Short_Scale_Bass_ {
+    position: absolute;
+    left: 11px;
+    top: 15px;
+    overflow: visible;
+    width: 307px;
+    height: 78px;
+    text-align: left;
+    font-family: Proxima Nova;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    color: rgba(0,0,0,1);
+    top:600px;
+    padding-left: 40px;
 
+  }
+  #price {
+    position: absolute;
+    left: 11px;
+    top: 102px;
+    overflow: visible;
+    width: 202px;
+    height: 60px;
+    text-align: left;
+    font-family: Proxima Nova;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 30px;
+    color: rgba(0,0,0,1);
+    top:650px;
+        padding-left: 40px;
+
+  }
