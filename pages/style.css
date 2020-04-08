@@ -167,7 +167,7 @@ figcaption {
     padding-left: 40px;
 
   }
-  #price {
+  #priceL {
     position: absolute;
     left: 11px;
     top: 102px;
@@ -182,5 +182,5 @@ figcaption {
     color: rgba(0,0,0,1);
     top:650px;
         padding-left: 40px;
-
   }
+  
