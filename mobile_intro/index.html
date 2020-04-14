@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Onboarding Tutorial</title>
+	<script src="https://unpkg.com/@lottiefiles/lottie-player@0.4.0/dist/lottie-player.js"></script>
+	<script type="text/javascript" src="js/swiped-events.js"></script>
+	<script src="https://d3js.org/d3.v5.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+	<meta name="viewport" content="width=device-width">
+</head>
+<style>
+body, html {
+	top:0;
+	left:0;
+	width:100%;
+	overflow:hidden;
+	font-family: 'Open Sans', sans-serif;
+	color:#1D1D1D;
+	position:fixed;
+	overflow-x:hidden;
+}
+#scene {
+	display: flex;
+    justify-content: center;
+    align-items: center
+	width:100%;
+	height:70vh;
+	cursor:pointer;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+lottie-player {
+	width:25em;
+	height:25em;
+	margin:auto;
+	cursor:pointer;
+}
+.progress {
+	margin:auto;
+	text-align:center;
+}
+.progress div {
+	border-radius:50%;
+	width:0.5em;
+	height:0.5em;
+	background-color:#CCCCCC;
+	display:inline-block;
+	margin:0.5%;
+	cursor:pointer;
+}
+.container {
+	width:30%;
+	margin:auto;
+	text-align:center;
+	animation: 0.5s fadeIn ease-in-out;
+}
+.container h2 {
+	font-size:1.2em;
+	line-height:1.2em;
+	font-weight:600;
+	letter-spacing:0.02em;
+}
+.container p {
+	font-size:0.8em;
+	line-height:1.5em;
+	font-weight:400;
+	color:#666666;
+}
+@keyframes fadeIn {
+	0% {opacity:0;};
+	100% {opacity:1;}
+}
+@media screen and (max-width:767px){
+	.progress {
+		margin-top:5%;
+	}
+	.container {
+		width:70%;
+	}
+}
+</style>
+<body>
+
+
+<div id="scene">
+	<lottie-player src=""  background="transparent"  speed="1" loop autoplay></lottie-player>
+</div>
+
+<div class="progress">
+	<div id="l1"></div>
+	<div id="l2"></div>
+	<div id="l3"></div>
+</div>
+
+
+</body>
+
+<script>
+
+
+element=document.querySelector('#scene')
+player = document.querySelector("lottie-player");
+controls = document.querySelectorAll('.progress div');
+progress = 1
+prefix = 'https://raw.githubusercontent.com/vidaj185/Core-Studio-Interaction/master/data/'
+document.querySelector('#l1').style.backgroundColor="#666666";
+getAnim(prefix+'1.json',true);
+
+	if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+	document.addEventListener('swiped-left', function(e) {
+	progress = progress+1
+	path = prefix+ progress +'.json'
+	getAnim(path,true);
+	grey()
+	highlight(progress)
+	checkProgress()
+	});
+
+	document.addEventListener('swiped-right', function(e) {
+		console.log(progress)
+	if(progress==1){
+		//do nothing
+	} else {
+		if(progress==0){
+			progress = 3
+		} if (progress == 2){
+			progress =1
+		}else {
+			progress = progress-1
+		}
+		path = prefix+ progress +'.json'
+		console.log(path)
+		getAnim(path,true);
+		grey()
+		highlight(progress)
+		checkProgress()
+	}
+
+	});
+
+	} else {
+
+	element.onclick=function() {
+		progress= progress+1
+		path = prefix + progress +'.json'
+		getAnim(path,true);
+		grey()
+		highlight(controls)
+		checkProgress()
+	}
+
+	}
+
+function checkProgress(){
+	if(progress==3) {
+		progress=0
+	} else if (progress==0){
+		progress==1
+	}
+}
+
+function grey() {
+	for(i=0;i<controls.length;i++){
+		controls[i].style.backgroundColor="#CCCCCC";
+	}
+}
+
+function highlight(l_id_number){
+	console.log('#l'+progress)
+	target = document.querySelector('#l'+progress)
+	target.style.backgroundColor="#666666";
+}
+
+for(i=0;i<controls.length;i++){
+	controls[i].onclick=function() {
+		element.innerHTML="";
+		grey();
+		this.style.backgroundColor="#666666";
+		id= this.id;
+		ref = id.split('l')
+		getAnim(ref[1],true)
+		controls = ref[1]
+	}
+}
+
+function getAnim(path, autoplay_value){
+	player.load(path);
+	console.log(player)
+	if(autoplay_value == false ){
+	}
+
+	// animation.play();
+	d3.select('.container').remove();
+	container = document.createElement('div')
+	container.setAttribute("class","container")
+	h2 = document.createElement('h2')
+	p = document.createElement('p')
+	target = document.querySelector('body')
+	container.appendChild(h2)
+	container.appendChild(p)
+	target.appendChild(container)
+
+
+	d3.csv('https://raw.githubusercontent.com/vidaj185/Core-Studio-Interaction/master/data/text.csv')
+		.then(function(data){
+			console.log(data);
+			if(progress==0){
+				ref = 3
+			} else {
+				ref = progress
+			}
+			console.log(ref)
+			filter = data.filter(function(d){return d.scene == ref})
+			h2.innerHTML = filter[0]['h2']
+			console.log(filter)
+			p.innerHTML= filter[0]['p']
+		})
+		.catch(function(error){
+		})
+}
+
+</script>
+</html>
