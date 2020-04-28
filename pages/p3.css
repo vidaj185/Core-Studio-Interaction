@@ -1,0 +1,71 @@
+h1 {
+  background-color:#B8BEC0;
+  border-radius: 100px;
+  margin-top: 5.5%;
+  margin-bottom:10%;
+  margin-left:27%;
+  margin-right:27%;
+  font-size: 4rem;
+  text-align: center;
+  color:white;
+  font-family: "futura";
+  display: block;
+  padding:30px;
+  z-index: 3;
+}
+h2 {
+  margin-left:30px;
+  font-size:40px;
+  font-family:"futura";
+}
+img {
+  max-height: 25%;
+  max-width:25%;
+  display: inline-block;
+  border: black 3px solid;
+  border-radius: 100%;
+  margin:35px;
+  z-index: 4;
+
+}
+.box-top {
+  background-color:black;
+  width: 100%;
+  height: 250px; 
+  z-index: -3;
+  margin: 0;
+  position: fixed;
+  top:0;
+  left:0;
+}
+.box-bottom {
+  background-color:black;
+  width: 100%;
+  height: 130px; 
+  
+  z-index: -3;
+  margin: 0;
+  position: fixed;
+ bottom:0;
+  left:0;
+}
+h3 {
+  float:left;
+  color:white;
+  font-family:"futura";
+  font-size:40px;
+  padding-left:30px;
+  
+  
+}
+h4 {
+  float:right;
+  color:white;
+  font-family:"futura";
+  font-size:40px;
+  padding-left:30px;
+  
+}
+
+
+
