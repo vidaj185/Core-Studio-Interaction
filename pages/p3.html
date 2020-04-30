@@ -2,16 +2,18 @@
 <html>
 <head>
   <title>Micro-Interaction Design</title>
+      <script src="https://unpkg.com/@lottiefiles/lottie-player@0.4.0/dist/lottie-player.js"></script>
   <link rel="stylesheet" type="text/css" href="p3.css">
 </head>
 <body>
-  <div class="box-top"></div>
-<h1> Level 2</h1>
+  <div class="box-top"><h1> Level 2</h1></div>
+
 <h2>Choose Your Character:</h2>
+
 <img src="lion2.png">
 <img src="snake2.png">
 <img src="fish2.png">
-<img src="unlock.png">
+<span class="button"><img src="unlock.png"></span>
 <img src="lock.png">
 <img src="lock.png">
 <img src="lock.png">
@@ -24,8 +26,34 @@
 <img src="lock.png">
 <img src="lock.png">
 
-<h3>Shop</h3>
-<h4>Info</h4>
-<div class="box-bottom"></div>
+
+<div id="alert">
+  <div class='aligner'>
+    <h5>Congratulations!<em>You have unlocked a whale.<em></h5>
+    <lottie-player src="https://assets6.lottiefiles.com/packages/lf20_x0rfAk.json"  background="transparent"  speed="1" loop autoplay></lottie-player>
+  </div>
+</div>
+
+<div class="box-bottom"><h3>Shop</h3>
+<h4>Info</h4></div>
 </body>
+
+<script type="text/javascript">
+
+button = document.querySelector('.button')
+alert = document.querySelector('#alert')
+
+button.onclick=function() {
+  alert.style.opacity='1'
+  alert.style.bottom='0'
+}
+
+alert.onclick=function() {
+  alert.style.opacity='0'
+  alert.style.bottom='-100vh'
+}
+
+  
+
+</script>
 </html>
